@@ -14,23 +14,23 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { useAuthState } from "@/state";
 
 // only on dev mode
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.NODE_ENV === "development") {
   loadDevMessages();
   loadErrorMessages();
 }
 
 // HTTP Link
 const httpLink = new HttpLink({
-  uri: process.env.VITE_GRAPHQL_URL
-    ? process.env.VITE_GRAPHQL_URL
+  uri: import.meta.env.VITE_GRAPHQL_URL
+    ? import.meta.env.VITE_GRAPHQL_URL
     : "http://localhost:8080/v1/graphql",
 });
 
 // WebSocket Link
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: process.env.VITE_WEBSOCKET_URL
-      ? process.env.VITE_WEBSOCKET_URL
+    url: import.meta.env.VITE_WEBSOCKET_URL
+      ? import.meta.env.VITE_WEBSOCKET_URL
       : "ws://localhost:8080/v1/graphql",
     connectionParams: () => ({
       headers: {
