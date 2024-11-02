@@ -1,0 +1,14 @@
+overwrite: true
+schema:
+  - "../../backend/api/graph/*.graphql"
+documents: "src/queries/api/**/*.graphql"
+generates:
+  src/queries/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHooks: true
+      scalars:
+        citext: string
